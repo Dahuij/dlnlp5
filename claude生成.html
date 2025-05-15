@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喵星人之家 - 爱猫人士的天堂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .cat-website {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* 头部样式 */
+        .site-header {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #f06292;
+            color: white;
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 30px;
+        }
+        
+        .site-header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* 主要区域样式 */
+        section {
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: #f06292;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        /* 英雄区域样式 */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #f8bbd0 0%, #f06292 100%);
+            color: white;
+        }
+        
+        .hero-content {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .hero-content h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .primary-btn {
+            background-color: white;
+            color: #f06292;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .primary-btn:hover {
+            background-color: #333;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cat-image-placeholder {
+            width: 300px;
+            height: 300px;
+            background: url('https://placekitten.com/600/600') center/cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 分类区域样式 */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .category-image {
+            height: 200px;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .category-card h3 {
+            padding: 20px 20px 10px;
+            color: #f06292;
+        }
+        
+        .category-card p {
+            padding: 0 20px 20px;
+            color: #666;
+        }
+        
+        .category-link {
+            display: block;
+            padding: 15px 20px;
+            background-color: #f8bbd0;
+            color: #333;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .category-link:hover {
+            background-color: #f06292;
+            color: white;
+        }
+        
+        /* 特色猫咪区域样式 */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 30px;
+        }
+        
+        .featured-cat {
+            display: flex;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cat-image {
+            flex: 0 0 200px;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .cat-info {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .cat-info h3 {
+            color: #f06292;
+            margin-bottom: 5px;
+        }
+        
+        .cat-breed {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        /* 护理小贴士区域样式 */
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .tip-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tip-card h3 {
+            color: #f06292;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* 订阅区域样式 */
+        .newsletter {
+            text-align: center;
+            background-color: #f8bbd0;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+        }
+        
+        .subscribe-btn {
+            background-color: #f06292;
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 30px 30px 0;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: #e91e63;
+        }
+        
+        /* 页脚样式 */
+        .site-footer {
+            background-color: #333;
+            color: #ddd;
+            padding: 50px 20px 20px;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a, .social-link {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover, .social-link:hover {
+            color: #f06292;
+        }
+        
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (min-width: 768px) {
+            .hero-section {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            .hero-content {
+                text-align: left;
+                flex: 1;
+                margin-right: 40px;
+                margin-bottom: 0;
+            }
+            
+            .hero-content p {
+                margin: 0 0 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-cat {
+                flex-direction: column;
+            }
+            
+            .cat-image {
+                height: 200px;
+                flex: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cat-website">
+        <header class="site-header">
+            <h1>喵星人之家</h1>
+            <p class="tagline">了解、爱护、欣赏我们的猫咪朋友</p>
+        </header>
+        
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>欢迎来到喵星人之家</h2>
+                <p>这里是爱猫人士的天堂，我们提供猫咪知识、养护指南和有趣的猫咪故事。</p>
+                <button class="primary-btn">了解更多</button>
+            </div>
+            <div class="hero-image">
+                <!-- 这里显示一张猫咪照片 -->
+                <div class="cat-image-placeholder"></div>
+            </div>
+        </section>
+        
+        <section class="cat-categories">
+            <h2>探索猫咪世界</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-image" style="background-color: #ffbe76;"></div>
+                    <h3>猫咪品种</h3>
+                    <p>从波斯猫到暹罗猫，了解各种受欢迎的猫咪品种及其特点。</p>
+                    <a href="#" class="category-link">查看品种</a>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-image" style="background-color: #badc58;"></div>
+                    <h3>猫咪健康</h3>
+                    <p>保持您的猫咪健康所需的一切知识，包括营养、运动和常见疾病预防。</p>
+                    <a href="#" class="category-link">健康指南</a>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-image" style="background-color: #7ed6df;"></div>
+                    <h3>猫咪行为</h3>
+                    <p>解读猫咪的神秘行为，从打呼噜到踩奶，了解它们的含义。</p>
+                    <a href="#" class="category-link">行为解析</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="featured-cats">
+            <h2>本月明星猫咪</h2>
+            <div class="featured-grid">
+                <div class="featured-cat">
+                    <div class="cat-image" style="background-color: #ff7979;"></div>
+                    <div class="cat-info">
+                        <h3>小橘子</h3>
+                        <p class="cat-breed">品种：美国短毛猫</p>
+                        <p>小橘子是一只活泼好动的小公猫，喜欢追逐玩具和晒太阳。他那标志性的橘色条纹和友好的性格让所有人都喜欢他。</p>
+                    </div>
+                </div>
+                
+                <div class="featured-cat">
+                    <div class="cat-image" style="background-color: #a29bfe;"></div>
+                    <div class="cat-info">
+                        <h3>雪球</h3>
+                        <p class="cat-breed">品种：布偶猫</p>
+                        <p>雪球是一只优雅的布偶猫，有着美丽的蓝眼睛和柔软的白色毛发。她性格温顺，喜欢被抱在怀里，是完美的伴侣猫。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cat-care-tips">
+            <h2>猫咪护理小贴士</h2>
+            <div class="tips-container">
+                <div class="tip-card">
+                    <h3>正确的喂食方式</h3>
+                    <p>成年猫咪每天需要定时定量的食物。避免过度喂食，确保随时有新鲜的水提供。</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h3>定期梳理毛发</h3>
+                    <p>尤其是长毛猫，需要每天梳理毛发，以减少毛球形成和脱毛问题。</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h3>必要的玩耍时间</h3>
+                    <p>猫咪需要每天进行适当的玩耍和运动，这有助于它们保持健康和预防行为问题。</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h3>定期兽医检查</h3>
+                    <p>每年至少带猫咪去兽医那里做一次全面检查，及时接种疫苗和防寄生虫。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="newsletter">
+            <h2>订阅我们的猫咪月报</h2>
+            <p>获取最新的猫咪资讯、护理技巧和有趣故事，直接发送到您的邮箱！</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="输入您的邮箱地址" class="email-input">
+                <button class="subscribe-btn">订阅</button>
+            </div>
+        </section>
+        
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>喵星人之家致力于提供高质量的猫咪相关信息，帮助猫主人更好地照顾自己的毛孩子。</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">猫咪品种</a></li>
+                        <li><a href="#">猫咪健康</a></li>
+                        <li><a href="#">猫咪行为</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">微博</a>
+                        <a href="#" class="social-link">微信</a>
+                        <a href="#" class="social-link">知乎</a>
+                        <a href="#" class="social-link">小红书</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 喵星人之家 - 版权所有</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

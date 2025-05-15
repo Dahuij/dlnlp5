@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI网页生成器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI网页生成器</h1>
+            <p>使用大模型自动设计和生成网页内容</p>
+            <div class="update-banner">
+                <span class="new-tag">新增</span>
+                <p>现已支持最新模型！OpenAI: GPT-4o, GPT-4o-mini, o1-mini | Gemini: Gemini-1.5-Pro, Gemini-2.0-flash, Gemini-2.5-pro-exp</p>
+            </div>
+        </header>
+        
+        <main>
+            <section class="prompt-section">
+                <h2>输入你的提示</h2>
+                
+                <div class="api-settings">
+                    <div class="api-type-selector">
+                        <label for="api-type">API类型：</label>
+                        <select id="api-type">
+                            <option value="openai">OpenAI</option>
+                            <option value="gemini">Gemini</option>
+                            <option value="zhipuai" selected>智谱AI (试用)</option>
+                            <option value="custom">自定义</option>
+                        </select>
+                    </div>
+                    
+                    <div id="custom-endpoint-container" style="display: none;">
+                        <label for="custom-endpoint">自定义API端点：</label>
+                        <input type="text" id="custom-endpoint" placeholder="请输入API端点URL">
+                    </div>
+                    
+                    <div class="model-selector">
+                        <label for="model-select">选择模型：</label>
+                        <select id="model-select">
+                            <!-- 模型选项将由JavaScript动态生成 -->
+                        </select>
+                    </div>
+                    
+                    <label for="api-key">API密钥：</label>
+                    <div class="api-key-container">
+                        <input type="password" id="api-key" placeholder="请输入您的API密钥">
+                        <button id="toggle-api-key" type="button">显示</button>
+                    </div>
+                    <div class="api-info">
+                        <small>您的API密钥不会被保存或发送到任何第三方服务器，仅用于直接调用API</small>
+                    </div>
+                </div>
+                
+                <div class="template-selector">
+                    <label for="template-select">选择模板：</label>
+                    <select id="template-select">
+                        <!-- 模板选项将由JavaScript动态生成 -->
+                    </select>
+                </div>
+                
+                <div class="options-panel">
+                    <label for="temperature-range">创意程度：</label>
+                    <input type="range" id="temperature-range" min="0" max="1" step="0.1" value="0.7">
+                    <span id="temperature-value">0.7</span>
+                </div>
+                
+                <textarea id="prompt-input" placeholder="请输入你想要生成的网页内容描述..."></textarea>
+                <button id="generate-btn">生成网页</button>
+            </section>
+            
+            <section class="result-section">
+                <h2>生成结果</h2>
+                <div class="actions">
+                    <button id="copy-html-btn" disabled>复制HTML</button>
+                    <button id="export-btn" disabled>导出网页文件</button>
+                </div>
+                <div id="result-container">
+                    <p class="placeholder-text">生成的内容将显示在这里...</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>DLNLP-5 作业项目 | 基于大模型的网页生成器</p>
+        </footer>
+    </div>
+    
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
